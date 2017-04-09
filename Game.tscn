@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://TileSet/Tileset_a.png" type="Texture" id=1]
 [ext_resource path="res://TileSet/TileSet.tres" type="TileSet" id=2]
+[ext_resource path="res://background_tiles.gd" type="Script" id=3]
 
 [node name="Game" type="Node"]
 
@@ -30,6 +31,7 @@ collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( 0, 5, 1, 5, 2, 5, 3, 5, 4, 5, 5, 5, 6, 5, 7, 5, 65536, 7, 65537, 8, 65538, 7, 65539, 7, 65540, 6, 65541, 8, 65542, 8, 65543, 6, 131072, 13, 131073, 13, 131074, 13, 131075, 13, 131076, 13, 131077, 13, 131078, 13, 131079, 13, 393216, 1, 393217, 1, 393218, 1, 393219, 1, 393220, 1, 393221, 1, 393222, 1, 393223, 1, 458752, 0, 458753, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 0, 458758, 0, 458759, 0 )
+script/script = ExtResource( 3 )
 
 [node name="city" type="TileMap" parent="."]
 
