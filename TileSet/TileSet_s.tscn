@@ -51,6 +51,14 @@ region = true
 region_rect = Rect2( 0, 96, 16, 16 )
 __meta__ = { "_edit_lock_":true }
 
+[node name="city9" type="Sprite" parent="."]
+
+transform/pos = Vector2( 64, 32 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 128, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
 [node name="city2" type="Sprite" parent="."]
 
 transform/pos = Vector2( 16, 32 )

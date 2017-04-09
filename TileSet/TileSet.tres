@@ -108,4 +108,12 @@
 12/navigation_offset = Vector2( 8, 8 )
 12/shape_offset = Vector2( 0, 0 )
 12/shapes = [  ]
+13/name = "city9"
+13/texture = ExtResource( 1 )
+13/tex_offset = Vector2( 0, 0 )
+13/region = Rect2( 0, 128, 16, 16 )
+13/occluder_offset = Vector2( 8, 8 )
+13/navigation_offset = Vector2( 8, 8 )
+13/shape_offset = Vector2( 0, 0 )
+13/shapes = [  ]
 
