@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://TileSet/revenge.png" type="Texture" id=1]
+
+[node name="TileSet" type="Node"]
+
+[node name="water1" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 0, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="water2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 16, 0 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 16, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="black" type="Sprite" parent="."]
+
+transform/pos = Vector2( 32, 0 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 32, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="street1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 16 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 32, 16, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="street2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 16, 16 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 48, 16, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="city1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 32 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 96, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="city2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 16, 32 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 16, 96, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="city3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 32, 32 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 48, 96, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="city4" type="Sprite" parent="."]
+
+transform/pos = Vector2( 48, 32 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 64, 96, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="city5" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 48 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 112, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="city6" type="Sprite" parent="."]
+
+transform/pos = Vector2( 16, 48 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 16, 112, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="city7" type="Sprite" parent="."]
+
+transform/pos = Vector2( 32, 48 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 32, 112, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="city8" type="Sprite" parent="."]
+
+transform/pos = Vector2( 48, 48 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 48, 112, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+
