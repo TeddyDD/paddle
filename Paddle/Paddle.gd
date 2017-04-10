@@ -1,7 +1,8 @@
+tool
 extends Patch9Frame
 
 var speed = 55
-var width = 18
+export(int) var width = 32 setget setWidth
 
 #priv
 var vpos = Vector2(0,0)
@@ -27,3 +28,7 @@ func _process(delta):
 	if ((Input.is_action_pressed("ui_right")) and (vpos.x+(speed*delta)+(width)<=get_viewport_rect().size.x)):
 		vpos.x = round(vpos.x + (speed * delta))
 	set_pos(vpos)
+	
+func setWidth(value):
+	width = value
+	resize(width)
