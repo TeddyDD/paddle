@@ -3,6 +3,8 @@ extends Patch9Frame
 var speed = 55
 var width = 18
 
+#priv
+var vpos = Vector2(0,0)
 func _ready():
 	set_process(true)
 	resize(width)
@@ -11,7 +13,6 @@ func _ready():
 
 func resize(w):
 	width = w
-	self.width = w
 	set_size(Vector2((w),get_size().y))
 	get_node("Area2D/center").set_polygon(Vector2Array([Vector2(4,1),Vector2(4,6),Vector2(w-4,6),Vector2(w-4,1)]))
 	get_node("Area2D/l1").set_polygon(Vector2Array([Vector2(0,1),Vector2(0,6),Vector2(3,7),Vector2(3,0)]))
@@ -20,7 +21,7 @@ func resize(w):
 	get_node("Area2D/r1").set_polygon(Vector2Array([Vector2(w-3,0),Vector2(w-3,7),Vector2(w,6),Vector2(w,1)]))
 	
 func _process(delta):
-	var vpos = get_pos()
+	vpos = get_pos()
 	if ((Input.is_action_pressed("ui_left")) and (vpos.x-(speed*delta)>=0)):
 		vpos.x = round(vpos.x - (speed * delta))
 	if ((Input.is_action_pressed("ui_right")) and (vpos.x+(speed*delta)+(width)<=get_viewport_rect().size.x)):
