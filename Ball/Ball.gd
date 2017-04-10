@@ -10,7 +10,7 @@ var gray = preload("res://Ball/ball_grey.png")
 
 var dir = Vector2(1,1)
 var ppos = Vector2(0,0)
-var speed = 50
+var speed = 65
 var _ready = false
 var _changed = true
 
@@ -23,32 +23,26 @@ func _ready():
 func _process(delta):
 	if _changed == true:
 		update_all()
+	if get_tree().is_editor_hint():
+		return
 	ppos = get_pos()
-	if (Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).x+(get_node(size).get_region_rect().size.x/2)<get_viewport_rect().size.x):
-		set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
-	else:
+	if (!(Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).x+(get_node(size).get_region_rect().size.x/2)<get_viewport_rect().size.x)):
 		dir.x = -dir.x
-		set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
-	if (Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).x-(get_node(size).get_region_rect().size.x/2)>0):
-		set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
-	else:
+	if (!(Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).x-(get_node(size).get_region_rect().size.x/2)>0)):
 		dir.x = -dir.x
-		set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
-	if (Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).y+(get_node(size).get_region_rect().size.y/2)<get_viewport_rect().size.y):
-		set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
-	else:
+	if (!(Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).y+(get_node(size).get_region_rect().size.y/2)<get_viewport_rect().size.y)):
 		dir.y = -dir.y
-		set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
-	if (Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).y-(get_node(size).get_region_rect().size.y/2)>0):
-		set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
-	else:
+	if (!(Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).y-(get_node(size).get_region_rect().size.y/2)>0)):
 		dir.y = -dir.y
-		set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
+	set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
 		
 func setcolor(value):
 	color = value
 	_changed = true
-	
+
+func bounce(area):
+	dir.y = -dir.y
+
 func setsize(value):
 	size = value
 	_changed = true

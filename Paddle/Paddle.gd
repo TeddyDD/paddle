@@ -35,3 +35,5 @@ func _process(delta):
 		
 	set_pos(vpos)
 	
+func _on_Area2D_area_enter( area ):
+	get_node("../ball").bounce(area)
