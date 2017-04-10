@@ -25,9 +25,10 @@ points = Vector2Array( -2, -5, 2, -5, 4, -4, 5, -2, 5, 2, 4, 4, 2, 5, -2, 5, -4,
 
 [node name="ball" type="Node2D"]
 
+transform/pos = Vector2( 52.1543, 52.1543 )
 script/script = ExtResource( 1 )
 color = "red"
-size = "medium"
+size = "mega"
 
 [node name="Particles2D" type="Particles2D" parent="."]
 
@@ -87,6 +88,7 @@ trigger = false
 
 [node name="medium" type="Sprite" parent="."]
 
+visibility/visible = false
 texture = ExtResource( 2 )
 region = true
 region_rect = Rect2( 4, 3, 3, 3 )
@@ -102,6 +104,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="medium/Area2D"]
 
@@ -139,14 +142,12 @@ trigger = false
 
 [node name="mega" type="Sprite" parent="."]
 
-visibility/visible = false
 texture = ExtResource( 2 )
 region = true
 region_rect = Rect2( 15, 0, 10, 10 )
 
 [node name="Area2D" type="Area2D" parent="mega" groups=[ "ball_area" ]]
 
-editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -155,7 +156,6 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="mega/Area2D"]
 
