@@ -56,6 +56,9 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="paddle" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 72.2931, 117.973 )
+size_flags/horizontal = 0
+size_flags/vertical = 0
+margin/right = 0.0
+margin/bottom = 0.0
 
 
