@@ -24,4 +24,5 @@ func _set_life(value):
 	prints(life)
 	
 func hit():
+	pass
 	

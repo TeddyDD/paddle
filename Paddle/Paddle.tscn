@@ -22,6 +22,7 @@ patch_margin/right = 4
 patch_margin/bottom = 1
 script/script = ExtResource( 2 )
 __meta__ = { "_edit_lock_":true }
+width = 18
 
 [node name="Area2D" type="Area2D" parent="."]
 
