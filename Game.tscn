@@ -3,8 +3,8 @@
 [ext_resource path="res://TileSet/Tileset_a.png" type="Texture" id=1]
 [ext_resource path="res://TileSet/TileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://background_tiles.gd" type="Script" id=3]
-[ext_resource path="res://Paddle/Paddle.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Ball/Ball.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Ball/Ball.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Paddle/Paddle.tscn" type="PackedScene" id=5]
 
 [node name="Game" type="Node"]
 
@@ -15,6 +15,7 @@ texture = ExtResource( 1 )
 centered = false
 region = true
 region_rect = Rect2( 0, 32, 16, 16 )
+__meta__ = { "_edit_lock_":true }
 
 [node name="background tiles" type="TileMap" parent="."]
 
@@ -55,13 +56,15 @@ occluder/light_mask = 1
 tile_data = IntArray( 1, 12, 65536, 10, 65537, 11, 65538, 9, 65539, 9, 65540, 9, 65541, 9, 65542, 12, 131072, 3, 131073, 4, 131074, 4, 131075, 4, 131076, 4, 131077, 4, 131078, 4, 131079, 3 )
 __meta__ = { "_edit_lock_":true }
 
-[node name="paddle" parent="." instance=ExtResource( 4 )]
+[node name="ball" parent="." instance=ExtResource( 4 )]
 
-size_flags/horizontal = 0
-size_flags/vertical = 0
-
-[node name="ball" parent="." instance=ExtResource( 5 )]
-
+editor/display_folded = true
 transform/pos = Vector2( 92.9262, 71.5105 )
 
+[node name="Paddle" parent="." instance=ExtResource( 5 )]
 
+transform/pos = Vector2( 35.9166, 120 )
+speed = 100
+
+
+[editable path="ball"]
