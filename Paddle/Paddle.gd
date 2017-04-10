@@ -1,6 +1,5 @@
 extends Patch9Frame
 
-
 var speed = 55
 var width = 18
 
@@ -9,7 +8,7 @@ func _ready():
 	resize(width)
 	set_pos(Vector2(floor(get_viewport_rect().end.x/2)-(get_size().x/2), \
 	get_viewport_rect().size.y-ceil(get_size().y/2)-10))
-	
+
 func resize(w):
 	width = w
 	self.width = w
@@ -22,21 +21,8 @@ func resize(w):
 	
 func _process(delta):
 	var vpos = get_pos()
-	if (Input.is_action_pressed("ui_left")):
-		set_pos(Vector2(vpos.x + (-speed * delta),vpos.y))
-
-	if (Input.is_action_pressed("ui_right")):
-		set_pos(Vector2(vpos.x + (speed * delta),vpos.y))
-
-
-#	if (Input.is_action_pressed("ui_left") \
-#		and get_pos().x-(speed*delta)-(width/2)>=0):
-#		set_pos(Vector2(get_pos().x - (speed * delta),get_pos().y))
-#		print(delta)
-#	elif (Input.is_action_pressed("ui_right") \
-#		and get_pos().x+(speed*delta)+(width/2)<=get_viewport_rect().size.x):
-#		set_pos(Vector2(get_pos().x + (speed * delta),get_pos().y))
-		set_pos(get_pos() + Vector2(speed * delta,0))
-#		print(delta)
-
-
+	if ((Input.is_action_pressed("ui_left")) and (vpos.x-(speed*delta)>=0)):
+		vpos.x = round(vpos.x - (speed * delta))
+	if ((Input.is_action_pressed("ui_right")) and (vpos.x+(speed*delta)+(width)<=get_viewport_rect().size.x)):
+		vpos.x = round(vpos.x + (speed * delta))
+	set_pos(vpos)

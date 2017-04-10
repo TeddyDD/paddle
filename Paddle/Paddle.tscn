@@ -25,6 +25,7 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="Area2D" type="Area2D" parent="."]
 
+visibility/visible = false
 input/pickable = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
