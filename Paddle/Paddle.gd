@@ -2,7 +2,8 @@ tool
 extends Patch9Frame
 
 var speed = 55
-export(int) var width = 32 setget setWidth
+export(int) var width = 18
+var _prev_width = width
 
 #priv
 var vpos = Vector2(0,0)
@@ -22,13 +23,15 @@ func resize(w):
 	get_node("Area2D/r1").set_polygon(Vector2Array([Vector2(w-3,0),Vector2(w-3,7),Vector2(w,6),Vector2(w,1)]))
 	
 func _process(delta):
+	if width != _prev_width:
+		resize(width)
+		_prev_width = width
 	vpos = get_pos()
+	
 	if ((Input.is_action_pressed("ui_left")) and (vpos.x-(speed*delta)>=0)):
 		vpos.x = round(vpos.x - (speed * delta))
 	if ((Input.is_action_pressed("ui_right")) and (vpos.x+(speed*delta)+(width)<=get_viewport_rect().size.x)):
 		vpos.x = round(vpos.x + (speed * delta))
+		
 	set_pos(vpos)
 	
-func setWidth(value):
-	width = value
-	resize(width)

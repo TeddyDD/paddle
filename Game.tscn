@@ -58,5 +58,8 @@ __meta__ = { "_edit_lock_":true }
 
 size_flags/horizontal = 0
 size_flags/vertical = 0
+margin/left = 55.0
+margin/right = 73.0
+width = 18
 
 
