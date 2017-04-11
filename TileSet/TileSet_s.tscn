@@ -43,6 +43,22 @@ region = true
 region_rect = Rect2( 48, 16, 16, 16 )
 __meta__ = { "_edit_lock_":true }
 
+[node name="street3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 48, 16 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 16, 128, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="street4" type="Sprite" parent="."]
+
+transform/pos = Vector2( 32, 16 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 32, 128, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
 [node name="city1" type="Sprite" parent="."]
 
 transform/pos = Vector2( 0, 32 )
@@ -83,7 +99,7 @@ region = true
 region_rect = Rect2( 64, 96, 16, 16 )
 __meta__ = { "_edit_lock_":true }
 
-[node name="city5" type="Sprite" parent="."]
+[node name="trees" type="Sprite" parent="."]
 
 transform/pos = Vector2( 0, 48 )
 texture = ExtResource( 1 )
@@ -91,7 +107,7 @@ region = true
 region_rect = Rect2( 0, 112, 16, 16 )
 __meta__ = { "_edit_lock_":true }
 
-[node name="city6" type="Sprite" parent="."]
+[node name="building1" type="Sprite" parent="."]
 
 transform/pos = Vector2( 16, 48 )
 texture = ExtResource( 1 )
@@ -99,7 +115,7 @@ region = true
 region_rect = Rect2( 16, 112, 16, 16 )
 __meta__ = { "_edit_lock_":true }
 
-[node name="city7" type="Sprite" parent="."]
+[node name="building2" type="Sprite" parent="."]
 
 transform/pos = Vector2( 32, 48 )
 texture = ExtResource( 1 )
@@ -107,12 +123,20 @@ region = true
 region_rect = Rect2( 32, 112, 16, 16 )
 __meta__ = { "_edit_lock_":true }
 
-[node name="city8" type="Sprite" parent="."]
+[node name="building3" type="Sprite" parent="."]
 
 transform/pos = Vector2( 48, 48 )
 texture = ExtResource( 1 )
 region = true
 region_rect = Rect2( 48, 112, 16, 16 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="building4" type="Sprite" parent="."]
+
+transform/pos = Vector2( 64, 48 )
+texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 64, 112, 16, 16 )
 __meta__ = { "_edit_lock_":true }
 
 
