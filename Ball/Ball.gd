@@ -28,17 +28,13 @@ func _fixed_process(delta):
 	if get_pos().x < 0:
 		if direction.y >= 0:
 			direction = direction.rotated(0.5*PI)
-			bounce()
 		else:
 			direction = direction.rotated(-0.5*PI)
-			bounce()
 	if get_pos().x > get_viewport_rect().size.x:
 		if direction.y >= 0:
 			direction = direction.rotated(-0.5*PI)
-			bounce()
 		else:
 			direction = direction.rotated(0.5*PI)
-			bounce()
 	if get_pos().y < 0 or get_pos().y > get_viewport_rect().size.y:
 		direction.y = -direction.y
 		
@@ -61,7 +57,7 @@ func _on_ball_area_enter( area ):
 		bounce()
 
 func bounce():
-	direction = direction.rotated(rand_range(-0.15*PI,0.15*PI))
+	direction = direction.rotated(rand_range(-0.03*PI,0.03*PI))
 	
 func setcolor(value):
 	color = value
