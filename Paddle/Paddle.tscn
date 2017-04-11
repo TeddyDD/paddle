@@ -28,9 +28,8 @@ points = Vector2Array( 15, 0, 15, 7, 14, 6, 14, 1 )
 custom_solver_bias = 0.0
 points = Vector2Array( 18, 1, 18, 6, 15, 7, 15, 0 )
 
-[node name="Paddle" type="KinematicBody2D"]
+[node name="Paddle" type="Area2D"]
 
-transform/pos = Vector2( 110, 0 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -47,13 +46,12 @@ shapes/3/trigger = false
 shapes/4/shape = SubResource( 5 )
 shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/4/trigger = false
-collision/layers = 1
-collision/mask = 1
-collision/margin = 0.08
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_lock_":true }
-speed = 55
-width = 18
 
 [node name="center" type="CollisionPolygon2D" parent="."]
 

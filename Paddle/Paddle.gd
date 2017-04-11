@@ -1,5 +1,5 @@
 tool
-extends KinematicBody2D
+extends Area2D
 
 export(int) var speed = 55
 export(int) var width = 18
@@ -35,4 +35,4 @@ func _fixed_process(delta):
 		velocity.x = 0
 		
 	var motion = velocity * delta
-	move(motion)
+	set_pos(get_pos() + motion)

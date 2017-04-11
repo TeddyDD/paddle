@@ -59,12 +59,13 @@ __meta__ = { "_edit_lock_":true }
 [node name="ball" parent="." instance=ExtResource( 4 )]
 
 editor/display_folded = true
-transform/pos = Vector2( 92.9262, 71.5105 )
+transform/pos = Vector2( 64, 113 )
 
 [node name="Paddle" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 35.9166, 120 )
-speed = 100
+transform/pos = Vector2( 55, 120 )
+speed = 55
+width = 18
 
 
 [editable path="ball"]
