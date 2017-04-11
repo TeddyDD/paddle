@@ -27,3 +27,9 @@ func _set_life(value):
 func hit():
 	pass
 	
+
+func _on_Block_area_enter( area ):
+	if (area.get_name() == "ball"):
+		life -= 1
+		if life <=0:
+			queue_free()
