@@ -36,8 +36,12 @@ func _fixed_process(delta):
 
 func _on_ball_area_enter( area ):
 	prints(area.get_name())
-#	if area.get_name() == "Paddle":
-	direction.y = -direction.y
+	if area.get_name() == "body" or area.get_name() == "paddle":
+		direction.y = -direction.y
+	if area.get_name() == "l":
+		direction.x = -direction.x
+	if area.get_name() == "r":
+		direction.x = -direction.x
 
 func bounce():
 	pass

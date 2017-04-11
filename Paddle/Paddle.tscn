@@ -35,9 +35,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
+margin/left = 55.0
 margin/top = 0.0
-margin/right = 18.0
+margin/right = 73.0
 margin/bottom = 8.0
 texture = ExtResource( 1 )
 region_rect = Rect2( 92, 82, 24, 8 )
@@ -47,8 +47,10 @@ patch_margin/right = 4
 patch_margin/bottom = 1
 script/script = ExtResource( 2 )
 __meta__ = { "_edit_lock_":true }
+speed = 55
+width = 18
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="paddle" type="Area2D" parent="."]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -72,7 +74,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 __meta__ = { "_edit_lock_":true }
 
-[node name="center" type="CollisionPolygon2D" parent="Area2D"]
+[node name="center" type="CollisionPolygon2D" parent="paddle"]
 
 build_mode = 0
 polygon = Vector2Array( 4, 1, 4, 6, 14, 6, 14, 1 )
@@ -80,7 +82,7 @@ shape_range = Vector2( 0, 0 )
 trigger = false
 __meta__ = { "_edit_lock_":true }
 
-[node name="l2" type="CollisionPolygon2D" parent="Area2D"]
+[node name="l2" type="CollisionPolygon2D" parent="paddle"]
 
 build_mode = 0
 polygon = Vector2Array( 3, 0, 3, 7, 4, 6, 4, 1 )
@@ -88,7 +90,7 @@ shape_range = Vector2( 1, 1 )
 trigger = false
 __meta__ = { "_edit_lock_":true }
 
-[node name="l1" type="CollisionPolygon2D" parent="Area2D"]
+[node name="l1" type="CollisionPolygon2D" parent="paddle"]
 
 build_mode = 0
 polygon = Vector2Array( 0, 1, 0, 6, 3, 7, 3, 0 )
@@ -96,7 +98,7 @@ shape_range = Vector2( 2, 2 )
 trigger = false
 __meta__ = { "_edit_lock_":true }
 
-[node name="r2" type="CollisionPolygon2D" parent="Area2D"]
+[node name="r2" type="CollisionPolygon2D" parent="paddle"]
 
 build_mode = 0
 polygon = Vector2Array( 14, 1, 14, 6, 15, 7, 15, 0 )
@@ -104,7 +106,7 @@ shape_range = Vector2( 3, 3 )
 trigger = false
 __meta__ = { "_edit_lock_":true }
 
-[node name="r1" type="CollisionPolygon2D" parent="Area2D"]
+[node name="r1" type="CollisionPolygon2D" parent="paddle"]
 
 build_mode = 0
 polygon = Vector2Array( 15, 0, 15, 7, 18, 6, 18, 1 )
@@ -112,6 +114,6 @@ shape_range = Vector2( 4, 4 )
 trigger = false
 __meta__ = { "_edit_lock_":true }
 
-[connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
+[connection signal="area_enter" from="paddle" to="." method="_on_Area2D_area_enter"]
 
 
