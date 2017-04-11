@@ -5,9 +5,12 @@ extends Node
 # var b = "textvar"
 var blocks = []
 func _ready():
-	pass
-
-func set_block():
-	blocks.append(load("res:/Block/Block.tscn").new())
-	blocks[blocks.size()].set_name("block")
-	add_child(blocks[blocks.size()])
+	for x in range(8):
+		blocks.append([])
+		for y in range(4):
+			blocks[x].append([])
+			blocks[x][y] = set_block(x,y)
+func set_block(x,y):
+	blocks[x][y] = load("res://Block/Block.tscn").instance()
+	blocks[x][y].set_pos(Vector2(x*16,y*8+3*16))
+	add_child(blocks[x][y])
