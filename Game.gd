@@ -5,6 +5,7 @@ extends Node
 # var b = "textvar"
 var blocks = []
 func _ready():
+	randomize()
 	for x in range(8):
 		blocks.append([])
 		for y in range(4):

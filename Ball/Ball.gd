@@ -25,9 +25,21 @@ func _fixed_process(delta):
 		update_all()
 	if get_tree().is_editor_hint():
 		return
-	if get_pos().x < 0 or get_pos().x > get_viewport_rect().size.x:
-		direction.x = -direction.x
-	if get_pos().y < 0:
+	if get_pos().x < 0:
+		if direction.y >= 0:
+			direction = direction.rotated(0.5*PI)
+			bounce()
+		else:
+			direction = direction.rotated(-0.5*PI)
+			bounce()
+	if get_pos().x > get_viewport_rect().size.x:
+		if direction.y >= 0:
+			direction = direction.rotated(-0.5*PI)
+			bounce()
+		else:
+			direction = direction.rotated(0.5*PI)
+			bounce()
+	if get_pos().y < 0 or get_pos().y > get_viewport_rect().size.y:
 		direction.y = -direction.y
 		
 	var motion = Vector2()
@@ -36,15 +48,20 @@ func _fixed_process(delta):
 
 func _on_ball_area_enter( area ):
 	prints(area.get_name())
-	if area.get_name() == "body" or area.get_name() == "paddle":
+	if area.get_name() == "body":
 		direction.y = -direction.y
+	if area.get_name() == "paddle":
+		direction.y = -direction.y
+		bounce()
 	if area.get_name() == "l":
 		direction.x = -direction.x
+		bounce()
 	if area.get_name() == "r":
 		direction.x = -direction.x
+		bounce()
 
 func bounce():
-	pass
+	direction = direction.rotated(rand_range(-0.15*PI,0.15*PI))
 	
 func setcolor(value):
 	color = value
