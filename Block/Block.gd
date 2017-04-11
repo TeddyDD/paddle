@@ -10,7 +10,8 @@ func _ready():
 	_set_life(type)
 
 func set_type(value):
-	get_node("sprite").set_animation(_anim_names[value])
+	if get_node("sprite") != null:
+		get_node("sprite").set_animation(_anim_names[value])
 	type = value
 	_set_life( type )
 
