@@ -11,7 +11,6 @@ var gray = preload("res://Ball/ball_grey.png")
 var dir = Vector2(1,1)
 var ppos = Vector2(0,0)
 var speed = 65
-var _ready = false
 var _changed = true
 
 
@@ -27,13 +26,17 @@ func _process(delta):
 		return
 	ppos = get_pos()
 	if (!(Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).x+(get_node(size).get_region_rect().size.x/2)<get_viewport_rect().size.x)):
-		dir.x = -dir.x
+		dir.x = -dir.x 
+		dir.rotated(0.9)
 	if (!(Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).x-(get_node(size).get_region_rect().size.x/2)>0)):
 		dir.x = -dir.x
+		dir.rotated(0.9)
 	if (!(Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).y+(get_node(size).get_region_rect().size.y/2)<get_viewport_rect().size.y)):
 		dir.y = -dir.y
+		speed = 65
 	if (!(Vector2(ppos + Vector2(dir * speed * Vector2(delta,delta))).y-(get_node(size).get_region_rect().size.y/2)>0)):
 		dir.y = -dir.y
+		dir.rotated(0.9)
 	set_pos(ppos + Vector2(dir * speed * Vector2(delta,delta)))
 		
 func setcolor(value):
@@ -42,6 +45,7 @@ func setcolor(value):
 
 func bounce(area):
 	dir.y = -dir.y
+	speed += 10
 
 func setsize(value):
 	size = value
@@ -66,3 +70,4 @@ func update_all():
 		get_node(size).get_node("Area2D").set_enable_monitoring(true)
 		get_node(size).show()
 	_changed = false
+	

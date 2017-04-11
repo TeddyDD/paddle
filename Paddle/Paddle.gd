@@ -36,4 +36,5 @@ func _process(delta):
 	set_pos(vpos)
 	
 func _on_Area2D_area_enter( area ):
-	get_node("../ball").bounce(area)
+	if (get_node("Area2D").get_overlapping_areas().has(get_node("../ball/mega/Area2D"))):
+		get_node("../ball").bounce(area)
