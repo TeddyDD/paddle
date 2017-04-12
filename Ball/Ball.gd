@@ -23,6 +23,7 @@ func _ready():
 	set_fixed_process(true)
 	
 func _fixed_process(delta):
+	direction = direction.normalized()
 	if _changed == true:
 		update_all()
 	if get_tree().is_editor_hint():
@@ -56,11 +57,16 @@ func _on_ball_area_enter( area ):
 			direction = direction.normalized()
 		else:
 			direction.y = -direction.y
-		bounce()
-
-#		if area.get_name() == "center":
-#			direction = direction.rotated()
-
+#		bounce()
+		var inpact_x = get_pos().x + ( get_node("Sprite").get_region_rect().size.x / 2 )
+		var midle_of_paddle = paddle.get_pos().x + ( paddle.width / 2 )
+		var ratio =  ( inpact_x - midle_of_paddle ) / (paddle.width / 2)
+		if area.get_name() == "center" and inpact_x <= paddle.width + paddle.get_pos().x and inpact_x >= paddle.get_pos().x:
+			if ratio >= 0:
+				direction = direction.rotated(-lerp(0,0.35,abs(ratio))*PI)
+			else:
+				direction = direction.rotated(lerp(0,0.35,abs(ratio))*PI)
+				
 	if area.get_name() == "l":
 		direction.x = -direction.x
 		bounce()
