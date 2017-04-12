@@ -1,49 +1,54 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://Block/Block.gd" type="Script" id=1]
-[ext_resource path="res://Block/medium/Tileset_a_31.png" type="Texture" id=2]
-[ext_resource path="res://Block/medium/Tileset_a_30.png" type="Texture" id=3]
-[ext_resource path="res://Block/medium/Tileset_a_29.png" type="Texture" id=4]
-[ext_resource path="res://Block/medium/Tileset_a_28.png" type="Texture" id=5]
-[ext_resource path="res://Block/hard/Tileset_a_13.png" type="Texture" id=6]
-[ext_resource path="res://Block/hard/Tileset_a_14.png" type="Texture" id=7]
-[ext_resource path="res://Block/hard/Tileset_a_15.png" type="Texture" id=8]
-[ext_resource path="res://Block/easy/Tileset_a_22.png" type="Texture" id=9]
-[ext_resource path="res://Block/easy/Tileset_a_23.png" type="Texture" id=10]
+[ext_resource path="res://Block/easy/Tileset_a_22.png" type="Texture" id=2]
+[ext_resource path="res://Block/medium/Tileset_a_29.png" type="Texture" id=3]
+[ext_resource path="res://Block/medium/Tileset_a_28.png" type="Texture" id=4]
+[ext_resource path="res://Block/medium/Tileset_a_31.png" type="Texture" id=5]
+[ext_resource path="res://Block/medium/Tileset_a_30.png" type="Texture" id=6]
+[ext_resource path="res://Block/easy/Tileset_a_23.png" type="Texture" id=7]
+[ext_resource path="res://Block/hard/Tileset_a_13.png" type="Texture" id=8]
+[ext_resource path="res://Block/hard/Tileset_a_14.png" type="Texture" id=9]
+[ext_resource path="res://Block/hard/Tileset_a_15.png" type="Texture" id=10]
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 0, 0, 14, 0, 14, 6, 0, 6 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 
-animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ) ], "loop":true, "name":"medium2", "speed":5.0 }, { "frames":[ ExtResource( 4 ), ExtResource( 5 ) ], "loop":true, "name":"medium1", "speed":5.0 }, { "frames":[ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ], "loop":true, "name":"hard", "speed":5.0 }, { "frames":[ ExtResource( 9 ) ], "loop":true, "name":"easy1", "speed":5.0 }, { "frames":[ ExtResource( 10 ) ], "loop":true, "name":"easy2", "speed":5.0 } ]
+animations = [ { "frames":[ ExtResource( 2 ) ], "loop":true, "name":"easy1", "speed":5.0 }, { "frames":[ ExtResource( 3 ), ExtResource( 4 ) ], "loop":true, "name":"medium1", "speed":5.0 }, { "frames":[ ExtResource( 5 ), ExtResource( 6 ) ], "loop":true, "name":"medium2", "speed":5.0 }, { "frames":[ ExtResource( 7 ) ], "loop":true, "name":"easy2", "speed":5.0 }, { "frames":[ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ], "loop":true, "name":"hard", "speed":5.0 } ]
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0, 0, 1, 0, 1, 4, 0, 5 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0, 0, 1, 0, 1, 5, 0, 6 )
+points = Vector2Array( 13, 0, 14, 0, 14, 5, 13, 4 )
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 13, 0, 14, 0, 14, 6, 13, 5 )
+points = Vector2Array( 1, 0, 13, 0, 13, 4, 1, 4 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 13, 5, 14, 6, 0, 6, 1, 5 )
+points = Vector2Array( 13, 4, 14, 5, 14, 6, 0, 6, 0, 5, 1, 4 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 1, 5, 1, 0, 13, 0, 13, 5 )
+points = Vector2Array( 1, 0, 1, 0, 1, 4 )
 
 [node name="Block" type="Area2D" groups=[ "Blocks" ]]
 
 input/pickable = true
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -55,11 +60,30 @@ type = 0
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "easy1"
 centered = false
 
 [node name="l" type="Area2D" parent="."]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="l" type="CollisionPolygon2D" parent="l"]
+
+build_mode = 0
+polygon = Vector2Array( 0, 0, 1, 0, 1, 4, 0, 5 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="r" type="Area2D" parent="."]
 
 editor/display_folded = true
 input/pickable = true
@@ -71,29 +95,10 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="l" type="CollisionPolygon2D" parent="l"]
-
-build_mode = 0
-polygon = Vector2Array( 0, 0, 1, 0, 1, 5, 0, 6 )
-shape_range = Vector2( 0, 0 )
-trigger = false
-
-[node name="r" type="Area2D" parent="."]
-
-editor/display_folded = true
-input/pickable = true
-shapes/0/shape = SubResource( 5 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-
 [node name="r" type="CollisionPolygon2D" parent="r"]
 
 build_mode = 0
-polygon = Vector2Array( 13, 0, 14, 0, 14, 6, 13, 5 )
+polygon = Vector2Array( 13, 0, 14, 0, 14, 5, 13, 4 )
 shape_range = Vector2( 0, 0 )
 trigger = false
 
@@ -101,12 +106,15 @@ trigger = false
 
 editor/display_folded = true
 input/pickable = true
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 7 )
+shapes/1/shape = SubResource( 6 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
+shapes/2/shape = SubResource( 7 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/2/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
@@ -115,8 +123,8 @@ angular_damp = 1.0
 [node name="body" type="CollisionPolygon2D" parent="body"]
 
 build_mode = 0
-polygon = Vector2Array( 1, 0, 13, 0, 13, 5, 14, 6, 0, 6, 1, 5 )
-shape_range = Vector2( 0, 1 )
+polygon = Vector2Array( 1, 0, 1, 4, 0, 5, 0, 6, 14, 6, 14, 5, 13, 4, 13, 0, 1, 0 )
+shape_range = Vector2( 0, 2 )
 trigger = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
