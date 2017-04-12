@@ -87,15 +87,15 @@ func update_all():
 	if size == "small":
 		get_node("size_ctrl").play("small")
 		clear_shapes()
-		sh.set_radius(1)
+		sh.set_radius(2)
 	elif size == "medium":
 		get_node("size_ctrl").play("medium")
 		clear_shapes()
-		sh.set_radius(1.5)
+		sh.set_radius(2)
 	elif size == "big":
 		get_node("size_ctrl").play("big")
 		clear_shapes()
-		sh.set_radius(2)
+		sh.set_radius(2.5)
 	else:
 		get_node("size_ctrl").play("mega")
 		clear_shapes()
