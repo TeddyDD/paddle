@@ -49,18 +49,12 @@ func _on_ball_area_enter( area ):
 		direction.y = -direction.y
 	if area.is_in_group("Paddle"):
 		if paddle.velocity.x != 0:
-			if direction.x >= 0:
-				direction = direction.rotated(0.5*PI)
-			else:
-				direction = direction.rotated(-0.5*PI)
+			direction.y = -direction.y
 			direction.x += (paddle.velocity.x / 500)
 			direction = direction.normalized()
 		else:
-			if direction.x >= 0:
-				direction = direction.rotated(0.5*PI)
-			else:
-				direction = direction.rotated(-0.5*PI)
-#		bounce()
+			direction.y = -direction.y
+		bounce()
 		
 	if area.get_name() == "l":
 		direction.x = -direction.x
