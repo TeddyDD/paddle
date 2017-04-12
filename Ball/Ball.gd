@@ -27,19 +27,21 @@ func _fixed_process(delta):
 		update_all()
 	if get_tree().is_editor_hint():
 		return
-	if get_pos().x - (get_node("Sprite").get_region_rect().size.x/2) < 0:
+	if get_pos().x - (get_node("Sprite").get_region_rect().size.x/2) + (direction.x * delta) < 0 and direction.x <= 0:
 		if direction.y >= 0:
 			direction = direction.rotated(0.5*PI)
 		else:
 			direction = direction.rotated(-0.5*PI)
-	if get_pos().x + (get_node("Sprite").get_region_rect().size.x/2) > get_viewport_rect().size.x:
+		bounce()
+	if get_pos().x + (get_node("Sprite").get_region_rect().size.x/2) + (direction.x * delta) > get_viewport_rect().size.x and direction.x >= 0:
 		if direction.y >= 0:
 			direction = direction.rotated(-0.5*PI)
 		else:
 			direction = direction.rotated(0.5*PI)
-	if get_pos().y - (get_node("Sprite").get_region_rect().size.x/2) < 0 or get_pos().y + (get_node("Sprite").get_region_rect().size.x/2) > get_viewport_rect().size.y:
+		bounce()
+	if get_pos().y - (get_node("Sprite").get_region_rect().size.x/2) - (direction.y * delta) < 0 or get_pos().y + (get_node("Sprite").get_region_rect().size.x/2) + (direction.y * delta) > get_viewport_rect().size.y:
 		direction.y = -direction.y
-		
+		bounce()
 	var motion = Vector2()
 	motion += direction * speed
 	set_pos(get_pos() + motion * delta)
@@ -49,19 +51,16 @@ func _on_ball_area_enter( area ):
 		direction.y = -direction.y
 	if area.is_in_group("Paddle"):
 		if paddle.velocity.x != 0:
-			if direction.x >= 0:
-				direction = direction.rotated(0.5*PI)
-			else:
-				direction = direction.rotated(-0.5*PI)
-			direction.x += (paddle.velocity.x / 500)
+			direction.y = -direction.y
+			direction.	x += (paddle.velocity.x / 500)
 			direction = direction.normalized()
 		else:
-			if direction.x >= 0:
-				direction = direction.rotated(0.5*PI)
-			else:
-				direction = direction.rotated(-0.5*PI)
-#		bounce()
-		
+			direction.y = -direction.y
+		bounce()
+
+#		if area.get_name() == "center":
+#			direction = direction.rotated()
+
 	if area.get_name() == "l":
 		direction.x = -direction.x
 		bounce()
@@ -70,7 +69,7 @@ func _on_ball_area_enter( area ):
 		bounce()
 
 func bounce():
-	direction = direction.rotated(rand_range(-0.03*PI,0.03*PI))
+	direction = direction.rotated(rand_range(-0.02*PI,0.02*PI))
 	
 func setcolor(value):
 	color = value
