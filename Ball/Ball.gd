@@ -46,7 +46,7 @@ func _on_ball_area_enter( area ):
 	prints(area.get_name())
 	if area.get_name() == "body":
 		direction.y = -direction.y
-	if area.get_name() == "paddle":
+	if area.is_in_group("Paddle"):
 		direction.y = -direction.y
 		bounce()
 	if area.get_name() == "l":

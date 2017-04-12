@@ -11,22 +11,22 @@ points = Vector2Array( 14, 1, 14, 6, 4, 6, 4, 1 )
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 4, 1, 4, 6, 3, 7, 3, 0 )
+points = Vector2Array( 3, 0, 3, 7, 0, 6, 0, 1 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 3, 0, 3, 7, 0, 6, 0, 1 )
+points = Vector2Array( 4, 1, 4, 6, 3, 7, 3, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 15, 0, 15, 7, 14, 6, 14, 1 )
+points = Vector2Array( 18, 1, 18, 6, 15, 7, 15, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 18, 1, 18, 6, 15, 7, 15, 0 )
+points = Vector2Array( 15, 0, 15, 7, 14, 6, 14, 1 )
 
 [node name="paddle" type="Patch9Frame"]
 
@@ -35,9 +35,9 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 55.0
+margin/left = 64.0
 margin/top = 0.0
-margin/right = 73.0
+margin/right = 82.0
 margin/bottom = 8.0
 texture = ExtResource( 1 )
 region_rect = Rect2( 92, 82, 24, 8 )
@@ -50,31 +50,19 @@ __meta__ = { "_edit_lock_":true }
 speed = 55
 width = 18
 
-[node name="paddle" type="Area2D" parent="."]
+[node name="center" type="Area2D" parent="." groups=[ "Paddle" ]]
 
+editor/display_folded = true
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 2 )
-shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/1/trigger = false
-shapes/2/shape = SubResource( 3 )
-shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/2/trigger = false
-shapes/3/shape = SubResource( 4 )
-shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/3/trigger = false
-shapes/4/shape = SubResource( 5 )
-shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/4/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-__meta__ = { "_edit_lock_":true }
 
-[node name="center" type="CollisionPolygon2D" parent="paddle"]
+[node name="center" type="CollisionPolygon2D" parent="center"]
 
 build_mode = 0
 polygon = Vector2Array( 4, 1, 4, 6, 14, 6, 14, 1 )
@@ -82,35 +70,83 @@ shape_range = Vector2( 0, 0 )
 trigger = false
 __meta__ = { "_edit_lock_":true }
 
-[node name="l2" type="CollisionPolygon2D" parent="paddle"]
+[node name="l1" type="Area2D" parent="." groups=[ "Paddle" ]]
 
-build_mode = 0
-polygon = Vector2Array( 3, 0, 3, 7, 4, 6, 4, 1 )
-shape_range = Vector2( 1, 1 )
-trigger = false
-__meta__ = { "_edit_lock_":true }
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
 
-[node name="l1" type="CollisionPolygon2D" parent="paddle"]
+[node name="l1" type="CollisionPolygon2D" parent="l1"]
 
 build_mode = 0
 polygon = Vector2Array( 0, 1, 0, 6, 3, 7, 3, 0 )
-shape_range = Vector2( 2, 2 )
+shape_range = Vector2( 0, 0 )
 trigger = false
 __meta__ = { "_edit_lock_":true }
 
-[node name="r2" type="CollisionPolygon2D" parent="paddle"]
+[node name="l2" type="Area2D" parent="." groups=[ "Paddle" ]]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="l2" type="CollisionPolygon2D" parent="l2"]
 
 build_mode = 0
-polygon = Vector2Array( 14, 1, 14, 6, 15, 7, 15, 0 )
-shape_range = Vector2( 3, 3 )
+polygon = Vector2Array( 3, 0, 3, 7, 4, 6, 4, 1 )
+shape_range = Vector2( 0, 0 )
 trigger = false
 __meta__ = { "_edit_lock_":true }
 
-[node name="r1" type="CollisionPolygon2D" parent="paddle"]
+[node name="r1" type="Area2D" parent="." groups=[ "Paddle" ]]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="r1" type="CollisionPolygon2D" parent="r1"]
 
 build_mode = 0
 polygon = Vector2Array( 15, 0, 15, 7, 18, 6, 18, 1 )
-shape_range = Vector2( 4, 4 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+__meta__ = { "_edit_lock_":true }
+
+[node name="r2" type="Area2D" parent="." groups=[ "Paddle" ]]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="r2" type="CollisionPolygon2D" parent="r2"]
+
+build_mode = 0
+polygon = Vector2Array( 14, 1, 14, 6, 15, 7, 15, 0 )
+shape_range = Vector2( 0, 0 )
 trigger = false
 __meta__ = { "_edit_lock_":true }
 
