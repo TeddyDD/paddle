@@ -3,6 +3,9 @@ extends Area2D
 
 export(String, "green", "gray", "red") var color = "green" setget setcolor
 export(String, "small", "medium", "big", "mega") var size = "small" setget setsize
+export var init_speed = 30
+export (Vector2) var init_pos
+export (Vector2) var direction = Vector2(1, 1)
 
 var textures = {
 	green = preload("res://Ball/ball_green.png"),
@@ -11,38 +14,47 @@ var textures = {
 }
 
 onready var paddle = get_node("../paddle")
+onready var speed = init_speed
 
-var direction = Vector2(1, 1)
-var speed = 30
 var _changed = true
 
-
 func _ready():
+	add_user_signal("_ball_lost")
+	connect("_ball_lost",get_node("../"),"_on_ball_lost")
+	if init_pos == null or init_pos.is_type("Vector2") == true:
+		init_pos = Vector2(get_viewport_rect().size.x/2,80)
 	update_all()
 	_changed = false
 	set_fixed_process(true)
-	
+
 func _fixed_process(delta):
 	direction = direction.normalized()
 	if _changed == true:
 		update_all()
 	if get_tree().is_editor_hint():
 		return
+	# if bounce from left edge
 	if get_pos().x - (get_node("Sprite").get_region_rect().size.x/2) + (direction.x * delta) < 0 and direction.x <= 0:
 		if direction.y >= 0:
 			direction = direction.rotated(0.5*PI)
 		else:
 			direction = direction.rotated(-0.5*PI)
 		bounce()
+	# if bounce from right edge
 	if get_pos().x + (get_node("Sprite").get_region_rect().size.x/2) + (direction.x * delta) > get_viewport_rect().size.x and direction.x >= 0:
 		if direction.y >= 0:
 			direction = direction.rotated(-0.5*PI)
 		else:
 			direction = direction.rotated(0.5*PI)
 		bounce()
-	if get_pos().y - (get_node("Sprite").get_region_rect().size.x/2) - (direction.y * delta) < 0 or get_pos().y + (get_node("Sprite").get_region_rect().size.x/2) + (direction.y * delta) > get_viewport_rect().size.y:
+	# if bounce from top edge
+	if get_pos().y - (get_node("Sprite").get_region_rect().size.x/2) - (direction.y * delta) < 0:
 		direction.y = -direction.y
 		bounce()
+	# if fall out of botton edge
+	if  get_pos().y + (get_node("Sprite").get_region_rect().size.x/2) + (direction.y * delta) > get_viewport_rect().size.y:
+		set_pos(init_pos)
+		emit_signal("_ball_lost")
 	var motion = Vector2()
 	motion += direction * speed
 	set_pos(get_pos() + motion * delta)
@@ -50,10 +62,11 @@ func _fixed_process(delta):
 func _on_ball_area_enter( area ):
 	if area.get_name() == "body":
 		direction.y = -direction.y
+		
 	if area.is_in_group("Paddle"):
 		if paddle.velocity.x != 0:
 			direction.y = -direction.y
-			direction.	x += (paddle.velocity.x / 500)
+			direction.x += (paddle.velocity.x / 500)
 			direction = direction.normalized()
 		else:
 			direction.y = -direction.y
@@ -66,7 +79,7 @@ func _on_ball_area_enter( area ):
 				direction = direction.rotated(-lerp(0,0.35,abs(ratio))*PI)
 			else:
 				direction = direction.rotated(lerp(0,0.35,abs(ratio))*PI)
-				
+		
 	if area.get_name() == "l":
 		direction.x = -direction.x
 		bounce()
@@ -76,7 +89,7 @@ func _on_ball_area_enter( area ):
 
 func bounce():
 	direction = direction.rotated(rand_range(-0.02*PI,0.02*PI))
-	
+
 func setcolor(value):
 	color = value
 	_changed = true

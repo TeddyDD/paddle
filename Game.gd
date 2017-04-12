@@ -11,6 +11,10 @@ func _ready():
 		for y in range(4):
 			blocks[x].append([])
 			blocks[x][y] = set_block(x,y)
+
+func _on_ball_lost():
+	print("game over")
+
 func set_block(x,y):
 	blocks[x][y] = load("res://Block/Block.tscn").instance()
 	blocks[x][y].set_pos(Vector2(x*16,y*8+3*16))
