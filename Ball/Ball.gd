@@ -10,7 +10,9 @@ var textures = {
 	gray = preload("res://Ball/ball_grey.png")
 }
 
-var direction = Vector2(-1, -1)
+onready var paddle = get_node("../paddle")
+
+var direction = Vector2(1, 1)
 var speed = 30
 var _changed = true
 
@@ -47,8 +49,20 @@ func _on_ball_area_enter( area ):
 	if area.get_name() == "body":
 		direction.y = -direction.y
 	if area.is_in_group("Paddle"):
-		direction.y = -direction.y
-		bounce()
+		if paddle.velocity.x != 0:
+			if direction.x >= 0:
+				direction = direction.rotated(0.5*PI)
+			else:
+				direction = direction.rotated(-0.5*PI)
+			direction.x += (paddle.velocity.x / 500)
+			direction = direction.normalized()
+		else:
+			if direction.x >= 0:
+				direction = direction.rotated(0.5*PI)
+			else:
+				direction = direction.rotated(-0.5*PI)
+#		bounce()
+		
 	if area.get_name() == "l":
 		direction.x = -direction.x
 		bounce()
