@@ -14,18 +14,30 @@ func _ready():
 	                get_pos().y))
 
 func resize(w):
-	width = w
 	set_size(Vector2(w,get_size().y))
-	get_node("center/center").set_polygon(Vector2Array([Vector2(4,1),Vector2(4,6),Vector2(w-4,6),Vector2(w-4,1)]))
-	get_node("l1/l1").set_polygon(Vector2Array([Vector2(0,1),Vector2(0,6),Vector2(3,7),Vector2(3,0)]))
-	get_node("l2/l2").set_polygon(Vector2Array([Vector2(3,0),Vector2(3,7),Vector2(4,6),Vector2(4,1)]))
-	get_node("r2/r2").set_polygon(Vector2Array([Vector2(w-4,1),Vector2(w-4,6),Vector2(w-3,7),Vector2(w-3,0)]))
-	get_node("r1/r1").set_polygon(Vector2Array([Vector2(w-3,0),Vector2(w-3,7),Vector2(w,6),Vector2(w,1)]))
+
+	get_node("center").clear_shapes()
+	var center = ConvexPolygonShape2D.new()
+	var r1 = ConvexPolygonShape2D.new()
+	var r2 = ConvexPolygonShape2D.new()
+	var l1 = ConvexPolygonShape2D.new()
+	var l2 = ConvexPolygonShape2D.new()
+	center.set_points(Vector2Array([Vector2(4,1),Vector2(4,6),Vector2(w-4,6),Vector2(w-4,1)]))
+	l1.set_points((Vector2Array([Vector2(0,1),Vector2(0,6),Vector2(3,7),Vector2(3,0)])))
+	l2.set_points(Vector2Array([Vector2(3,0),Vector2(3,7),Vector2(4,6),Vector2(4,1)]))
+	r2.set_points(Vector2Array([Vector2(w-4,1),Vector2(w-4,6),Vector2(w-3,7),Vector2(w-3,0)]))
+	r2.set_points(Vector2Array([Vector2(w-3,0),Vector2(w-3,7),Vector2(w,6),Vector2(w,1)]))
+	get_node("center").add_shape(center)
+	get_node("l1").add_shape(center)
+	get_node("l2").add_shape(center)
+	get_node("r1").add_shape(center)
+	get_node("r2").add_shape(center)
+	
+	_prev_width = w
 	
 func _process(delta):
 	if width != _prev_width:
 		resize(width)
-		_prev_width = width
 		
 	if Input.is_action_pressed("ui_left") and get_pos().x > 0:
 		velocity.x = -speed
