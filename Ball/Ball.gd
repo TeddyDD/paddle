@@ -27,17 +27,17 @@ func _fixed_process(delta):
 		update_all()
 	if get_tree().is_editor_hint():
 		return
-	if get_pos().x < 0:
+	if get_pos().x - (get_node("Sprite").get_region_rect().size.x/2) < 0:
 		if direction.y >= 0:
 			direction = direction.rotated(0.5*PI)
 		else:
 			direction = direction.rotated(-0.5*PI)
-	if get_pos().x > get_viewport_rect().size.x:
+	if get_pos().x + (get_node("Sprite").get_region_rect().size.x/2) > get_viewport_rect().size.x:
 		if direction.y >= 0:
 			direction = direction.rotated(-0.5*PI)
 		else:
 			direction = direction.rotated(0.5*PI)
-	if get_pos().y < 0 or get_pos().y > get_viewport_rect().size.y:
+	if get_pos().y - (get_node("Sprite").get_region_rect().size.x/2) < 0 or get_pos().y + (get_node("Sprite").get_region_rect().size.x/2) > get_viewport_rect().size.y:
 		direction.y = -direction.y
 		
 	var motion = Vector2()
@@ -45,7 +45,6 @@ func _fixed_process(delta):
 	set_pos(get_pos() + motion * delta)
 
 func _on_ball_area_enter( area ):
-	prints(area.get_name())
 	if area.get_name() == "body":
 		direction.y = -direction.y
 	if area.is_in_group("Paddle"):
