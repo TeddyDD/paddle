@@ -74,7 +74,7 @@ func _on_ball_area_enter( area ):
 	if area.is_in_group("Paddle"):
 		if paddle.velocity.x != 0:
 			direction.y = -direction.y
-			direction.x += (paddle.velocity.x / 500)
+			direction.x += (paddle.velocity.x / 600)
 			direction = direction.normalized()
 		else:
 			direction.y = -direction.y
