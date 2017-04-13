@@ -39,17 +39,13 @@ func _fixed_process(delta):
 		return
 	# if bounce from left edge
 	if get_pos().x - (get_node("Sprite").get_region_rect().size.x/2) + (direction.x * delta) < 0 and direction.x <= 0:
-		if direction.y >= 0:
-			direction = direction.rotated(0.5*PI)
-		else:
-			direction = direction.rotated(-0.5*PI)
+		direction.x = -direction.x
+		direction.y *= 1.1
 		bounce()
 	# if bounce from right edge
 	if get_pos().x + (get_node("Sprite").get_region_rect().size.x/2) + (direction.x * delta) > get_viewport_rect().size.x and direction.x >= 0:
-		if direction.y >= 0:
-			direction = direction.rotated(-0.5*PI)
-		else:
-			direction = direction.rotated(0.5*PI)
+		direction.x = -direction.x
+		direction.y *= 1.1
 		bounce()
 	# if bounce from top edge
 	if get_pos().y - (get_node("Sprite").get_region_rect().size.x/2) - (direction.y * delta) < 0:
