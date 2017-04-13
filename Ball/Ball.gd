@@ -4,6 +4,7 @@ extends Area2D
 export(String, "green", "gray", "red") var color = "green" setget setcolor
 export(String, "small", "medium", "big", "mega") var size = "small" setget setsize
 export var init_speed = 30
+export var max_speed = 35
 export (Vector2) var init_pos
 export (Vector2) var direction = Vector2(1, 1)
 
@@ -16,12 +17,13 @@ var textures = {
 onready var paddle = get_node("../paddle")
 onready var speed = init_speed
 
+
 var _changed = true
 
 func _ready():
 	add_user_signal("_ball_lost")
 	connect("_ball_lost",get_node("../"),"_on_ball_lost")
-	if init_pos == null or init_pos.is_type("Vector2") == true:
+	if init_pos == null or typeof(init_pos)!=5:
 		init_pos = Vector2(get_viewport_rect().size.x/2,80)
 	update_all()
 	_changed = false
@@ -54,15 +56,13 @@ func _fixed_process(delta):
 	# if fall out of botton edge
 	if  get_pos().y + (get_node("Sprite").get_region_rect().size.x/2) + (direction.y * delta) > get_viewport_rect().size.y:
 		set_pos(init_pos)
+		speed = init_speed
 		emit_signal("_ball_lost")
 	var motion = Vector2()
 	motion += direction * speed
 	set_pos(get_pos() + motion * delta)
 
 func _on_ball_area_enter( area ):
-	if area.get_name() == "body":
-		direction.y = -direction.y
-		
 	if area.is_in_group("Paddle"):
 		if paddle.velocity.x != 0:
 			direction.y = -direction.y
@@ -79,7 +79,11 @@ func _on_ball_area_enter( area ):
 				direction = direction.rotated(-lerp(0,0.35,abs(ratio))*PI)
 			else:
 				direction = direction.rotated(lerp(0,0.35,abs(ratio))*PI)
-		
+		inc_speed()
+	
+	if area.get_name() == "body":
+		direction.y = -direction.y
+		inc_speed()
 	if area.get_name() == "l":
 		direction.x = -direction.x
 		bounce()
@@ -89,6 +93,11 @@ func _on_ball_area_enter( area ):
 
 func bounce():
 	direction = direction.rotated(rand_range(-0.02*PI,0.02*PI))
+	inc_speed()
+
+func inc_speed():
+	if speed * 1.04 <= max_speed:
+		speed = (speed * 1.02)
 
 func setcolor(value):
 	color = value
