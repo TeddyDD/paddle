@@ -23,6 +23,8 @@ func _ready():
 func set_type(t):
 	if _ready == true:
 		get_node("Sprite").set_region_rect(types[t])
+	else:
+		type = t
 func _fixed_process(delta):
 	if get_tree().is_editor_hint() == false:
 		set_pos(get_pos() + Vector2(0, falling_speed) * delta)
