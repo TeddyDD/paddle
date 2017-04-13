@@ -43,9 +43,21 @@ func _fixed_process(delta):
 		direction.y = -direction.y
 		bounce()
 	var motion = Vector2()
+<<<<<<< Updated upstream
 	motion += direction * speed
 	set_pos(get_pos() + motion * delta)
 
+=======
+	if _started == true:
+		motion += direction * speed
+		set_pos(get_pos() + motion * delta)
+	else:
+		set_pos(Vector2(paddle.get_pos().x + paddle.width/2, paddle.get_pos().y-1))
+		direction == Vector2(1,-1).normalized()
+	if Input.is_action_pressed("ui_select"):
+		_started = true
+	
+>>>>>>> Stashed changes
 func _on_ball_area_enter( area ):
 	if area.get_name() == "body":
 		direction.y = -direction.y
