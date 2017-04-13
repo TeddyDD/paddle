@@ -15,7 +15,7 @@ func _ready():
 	for i in range(count):
 		var p = Vector2(round(rand_range(-spread.x, spread.x)), \
 		                round(rand_range(-spread.y, spread.y)))
-		people.append([p, rand_arr(head), rand_arr(torso), rand_arr(pants)])
+		people.append([p, Global.rand_arr(head), Global.rand_arr(torso), Global.rand_arr(pants)])
 	
 func _draw():
 	var ball = get_parent().get_node("ball").get_global_pos()
@@ -32,8 +32,7 @@ func _draw():
 		r.pos.y += 1
 		draw_rect(r, p[3])
 		
-func rand_arr(arr):
-	return arr[randi() % arr.size()]
+
 	
 func get_colors():
 	return {

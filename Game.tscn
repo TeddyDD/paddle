@@ -18,7 +18,9 @@ texture = ExtResource( 2 )
 centered = false
 region = true
 region_rect = Rect2( 0, 32, 16, 16 )
-__meta__ = { "_edit_lock_":true }
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="background tiles" type="TileMap" parent="."]
 
@@ -38,7 +40,9 @@ collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( 0, 5, 1, 5, 2, 5, 3, 5, 4, 5, 5, 5, 6, 5, 7, 5, 65536, 7, 65537, 8, 65538, 7, 65539, 7, 65540, 6, 65541, 8, 65542, 8, 65543, 6, 131072, 13, 131073, 13, 131074, 13, 131075, 13, 131076, 13, 131077, 13, 131078, 13, 131079, 13, 393216, 1, 393217, 1, 393218, 1, 393219, 1, 393220, 1, 393221, 1, 393222, 1, 393223, 1, 458752, 0, 458753, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 0, 458758, 0, 458759, 0 )
 script/script = ExtResource( 4 )
-__meta__ = { "_edit_lock_":true }
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="city" type="TileMap" parent="."]
 
@@ -57,18 +61,22 @@ collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( 1, 12, 65536, 10, 65537, 11, 65538, 9, 65539, 9, 65540, 9, 65541, 9, 65542, 12, 131072, 3, 131073, 4, 131074, 4, 131075, 4, 131076, 4, 131077, 4, 131078, 4, 131079, 3 )
-__meta__ = { "_edit_lock_":true }
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="paddle" parent="." instance=ExtResource( 5 )]
 
-margin/left = 55.0
+margin/left = 0.0
 margin/top = 114.0
-margin/right = 73.0
+margin/right = 18.0
 margin/bottom = 122.0
-width = 18
 
 [node name="ball" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 92.9262, 71.5105 )
+init_speed = 30
+init_pos = null
+direction = Vector2( 0.707107, 0.707107 )
 
 
