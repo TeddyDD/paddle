@@ -30,3 +30,7 @@ func _fixed_process(delta):
 		set_pos(get_pos() + Vector2(0, falling_speed) * delta)
 	if get_pos().y - get_node("Sprite").get_region_rect().size.y >= get_viewport_rect().size.y:
 		queue_free()
+
+func _on_Box_area_enter( area ):
+	if area.is_in_group("Paddle"):
+		queue_free()
