@@ -67,14 +67,13 @@ func _fixed_process(delta):
 		_started = true
 	
 func _on_ball_area_enter( area ):
-	if area.is_in_group("Paddle"):
+	if area.is_in_group("Paddle") and direction.y >0:
 		if paddle.velocity.x != 0:
 			direction.y = -direction.y
 			direction.x += (paddle.velocity.x / 500)
 			direction = direction.normalized()
 		else:
 			direction.y = -direction.y
-#		bounce()
 		var inpact_x = get_pos().x + ( get_node("Sprite").get_region_rect().size.x / 2 )
 		var midle_of_paddle = paddle.get_pos().x + ( paddle.width / 2 )
 		var ratio =  ( inpact_x - midle_of_paddle ) / (paddle.width / 2)
@@ -84,7 +83,7 @@ func _on_ball_area_enter( area ):
 			else:
 				direction = direction.rotated(lerp(0,0.35,abs(ratio))*PI)
 		inc_speed()
-	
+		
 	if area.get_name() == "body":
 		direction.y = -direction.y
 		inc_speed()
