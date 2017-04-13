@@ -5,7 +5,7 @@ export(String, "green", "gray", "red") var color = "green" setget setcolor
 export(String, "small", "medium", "big", "mega") var size = "small" setget setsize
 export var init_speed = 30
 export var max_speed = 35
-export (Vector2) var init_pos
+export (Vector2) var init_pos = null
 export (Vector2) var direction = Vector2(1, 1)
 
 var textures = {
@@ -17,16 +17,18 @@ var textures = {
 onready var paddle = get_node("../paddle")
 onready var speed = init_speed
 
-
+var _started = false
 var _changed = true
 
 func _ready():
 	add_user_signal("_ball_lost")
 	connect("_ball_lost",get_node("../"),"_on_ball_lost")
-	if init_pos == null or typeof(init_pos)!=5:
-		init_pos = Vector2(get_viewport_rect().size.x/2,80)
+	if typeof(init_pos)!=5:
+		init_pos = Vector2(paddle.get_pos().x+paddle.width/2,paddle.get_pos().y)
+	set_pos(init_pos)
 	update_all()
 	_changed = false
+	_started = false
 	set_fixed_process(true)
 
 func _fixed_process(delta):
@@ -55,13 +57,19 @@ func _fixed_process(delta):
 		bounce()
 	# if fall out of botton edge
 	if  get_pos().y + (get_node("Sprite").get_region_rect().size.x/2) + (direction.y * delta) > get_viewport_rect().size.y:
-		set_pos(init_pos)
 		speed = init_speed
+		_started = false
 		emit_signal("_ball_lost")
 	var motion = Vector2()
-	motion += direction * speed
-	set_pos(get_pos() + motion * delta)
-
+	if _started == true:
+		motion += direction * speed
+		set_pos(get_pos() + motion * delta)
+	else:
+		set_pos(Vector2(paddle.get_pos().x + paddle.width/2, paddle.get_pos().y))
+		direction == Vector2(1,-1).normalized()
+	if Input.is_action_pressed("ui_select"):
+		_started = true
+	
 func _on_ball_area_enter( area ):
 	if area.is_in_group("Paddle"):
 		if paddle.velocity.x != 0:
