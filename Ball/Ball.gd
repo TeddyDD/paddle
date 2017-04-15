@@ -131,4 +131,16 @@ func update_all():
 		sh.set_radius(5)
 	get_node("Sprite").set_texture(textures[color])
 	add_shape(sh)
+	
+	#DEBUG
+	var _dbg_shapes = [sh]
+	for i in _dbg_shapes:
+		var _s = CollisionShape2D.new()
+		_s.set_shape(i)
+		var _a = Area2D.new()
+		add_child(_a)
+		_a.add_child(_s)
+		
+	#\DEBUG
+	
 	_changed = false

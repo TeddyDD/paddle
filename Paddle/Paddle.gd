@@ -37,8 +37,17 @@ func resize(w):
 	get_node("l2").add_shape(l2)
 	get_node("r2").add_shape(r2)
 	
+	#DEBUG
+	var _dbg_shapes = [l1,l2,r1,r2,center]
+	for i in _dbg_shapes:
+		var _s = CollisionPolygon2D.new()
+		_s.set_polygon(i.get_points())
+		var _a = Area2D.new()
+		add_child(_a)
+		_a.add_child(_s)
+	#\DEBUG
 	_prev_width = w
-	
+
 func _process(delta):
 	if width != _prev_width:
 		resize(width)
