@@ -128,6 +128,4 @@ _update_shape_index = 0
 
 [connection signal="area_enter" from="." to="." method="_on_ball_area_enter"]
 
-[connection signal="body_enter" from="." to="." method="_on_ball_body_enter"]
-
 
