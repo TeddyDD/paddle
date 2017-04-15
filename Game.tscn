@@ -76,7 +76,5 @@ margin/bottom = 122.0
 
 transform/pos = Vector2( 92.9262, 71.5105 )
 init_speed = 30
-init_pos = null
-direction = Vector2( 0.707107, 0.707107 )
 
 
