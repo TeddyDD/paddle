@@ -41,7 +41,9 @@ func behave(t):
 	if t == "blue":
 		get_node("../paddle").resize(get_node("../paddle").width + 20)
 	if t == "purple":
-		pass
+		var c = load("res://People/crowd.tscn").instance()
+		c.set_pos(Vector2(48,39))
+		get_parent().add_child(c)
 	if t == "green":
 		pass
 	if t == "red":
