@@ -26,11 +26,13 @@ patch_margin/top = 1
 patch_margin/right = 4
 patch_margin/bottom = 1
 script/script = ExtResource( 2 )
-__meta__ = { "_edit_lock_":true }
-speed = 55
-width = 18
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="center" type="Area2D" parent="." groups=[ "Paddle" ]]
+[node name="center" type="Area2D" parent="." groups=[
+"Paddle",
+]]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -41,7 +43,9 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="l1" type="Area2D" parent="." groups=[ "Paddle" ]]
+[node name="l1" type="Area2D" parent="." groups=[
+"Paddle",
+]]
 
 editor/display_folded = true
 input/pickable = true
@@ -53,7 +57,9 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="l2" type="Area2D" parent="." groups=[ "Paddle" ]]
+[node name="l2" type="Area2D" parent="." groups=[
+"Paddle",
+]]
 
 editor/display_folded = true
 input/pickable = true
@@ -65,7 +71,9 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="r1" type="Area2D" parent="." groups=[ "Paddle" ]]
+[node name="r1" type="Area2D" parent="." groups=[
+"Paddle",
+]]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -76,7 +84,9 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 
-[node name="r2" type="Area2D" parent="." groups=[ "Paddle" ]]
+[node name="r2" type="Area2D" parent="." groups=[
+"Paddle",
+]]
 
 editor/display_folded = true
 input/pickable = true
