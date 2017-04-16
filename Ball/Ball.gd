@@ -11,6 +11,7 @@ export (int) var div_padd_mov_fact = 25
 export (float) var max_defl_hit_paddle = 0.35
 export (int) var bounce = 0.01
 
+var types = ["small","medium","big","mega"]
 var textures = {
 	green = preload("res://Ball/ball_green.png"),
 	red = preload("res://Ball/ball_red.png"),
@@ -180,7 +181,7 @@ func update_all():
 		get_node("size_ctrl").play("big")
 		clear_shapes()
 		sh.set_radius(2.5)
-	else:
+	elif size == "mega":
 		get_node("size_ctrl").play("mega")
 		clear_shapes()
 		sh.set_radius(5)

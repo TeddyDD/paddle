@@ -17,8 +17,7 @@ func _ready():
 	add_shape(co)
 	_ready = true
 	set_type(type)
-	set_fixed_process(true)
-	
+	set_fixed_process(true)	
 
 func set_type(t):
 	if _ready == true:
@@ -36,13 +35,19 @@ func _on_Box_area_enter( area ):
 	if area.is_in_group("Paddle"):
 		behave(type)
 		queue_free()
-		
+
 func behave(t):
 	if t == "blue":
 		get_node("../paddle").resize(get_node("../paddle").width + 20)
 	if t == "purple":
-		pass
+		var c = load("res://People/crowd.tscn").instance()
+		c.set_pos(Vector2(48,39))
+		get_parent().add_child(c)	
 	if t == "green":
-		pass
+		for i in range(get_node("../ball").types.size()):
+			if get_node("../ball").types[i] == get_node("../ball").size and i != get_node("../ball").types.size()-1:
+				print(i)
+				get_node("../ball").size = get_node("../ball").types[i+1] 
+				break
 	if t == "red":
 		pass
