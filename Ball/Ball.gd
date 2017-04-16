@@ -114,23 +114,41 @@ func _on_ball_area_enter( area ):
 		else:
 			if area.get_name() == "l1" and direction.x > 0:
 				direction = direction.rotated(PI)
-				direction.y *=  1.5
-			if area.get_name() == "r2" and direction.x < 0:
+				if direction.y >= 0:
+					direction.y *= -1.5
+				else:
+					direction.y *= 1.5
+			elif area.get_name() == "r2" and direction.x < 0:
 				direction = direction.rotated(PI)
-				direction.y *= 1.5
-			if area.get_name() == "l2":
+				if direction.y >= 0:
+					direction.y *= -1.5
+				else:
+					direction.y *= 1.5
+			elif area.get_name() == "l2":
 				direction.y = -direction.y
-			if area.get_name() == "r1" :
+			elif area.get_name() == "r1" :
 				direction.y = -direction.y
 	
 	if area.is_in_group("Blocks"):
-		if area.get_name() == "body":
+		var ov = []
+		var ovb = 0
+		for i in get_overlapping_areas():
+			if ovb > 1:
+				break
+			if i.get_parent().get_name().begins_with("Block") and ov.has(i.get_parent().get_name()) == false:
+				print("anyboddy here??")
+				ov.append(i.get_parent().get_name())
+				ovb += 1
+		if ovb <= 1:
+			if area.get_name() == "body":
+				direction.y = -direction.y
+				inc_speed()
+			if area.get_name() == "l":
+				direction.x = -direction.x
+			if area.get_name() == "r":
+				direction.x = -direction.x
+		else:
 			direction.y = -direction.y
-			inc_speed()
-		if area.get_name() == "l":
-			direction.x = -direction.x
-		if area.get_name() == "r":
-			direction.x = -direction.x
 
 func bounce():
 	direction = direction.rotated(rand_range(-bounce*PI,bounce*PI))

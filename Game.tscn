@@ -75,6 +75,5 @@ margin/bottom = 122.0
 [node name="ball" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 92.9262, 71.5105 )
-init_speed = 30
 
 
