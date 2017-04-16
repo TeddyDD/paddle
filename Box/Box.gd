@@ -23,6 +23,7 @@ func _ready():
 func set_type(t):
 	if _ready == true:
 		get_node("Sprite").set_region_rect(types[t])
+		type = t
 	else:
 		type = t
 func _fixed_process(delta):
@@ -33,4 +34,15 @@ func _fixed_process(delta):
 
 func _on_Box_area_enter( area ):
 	if area.is_in_group("Paddle"):
+		behave(type)
 		queue_free()
+		
+func behave(t):
+	if t == "blue":
+		get_node("../paddle").resize(get_node("../paddle").width + 20)
+	if t == "purple":
+		pass
+	if t == "green":
+		pass
+	if t == "red":
+		pass

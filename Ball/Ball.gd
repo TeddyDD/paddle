@@ -136,7 +136,6 @@ func _on_ball_area_enter( area ):
 			if ovb > 1:
 				break
 			if i.get_parent().get_name().begins_with("Block") and ov.has(i.get_parent().get_name()) == false:
-				print("anyboddy here??")
 				ov.append(i.get_parent().get_name())
 				ovb += 1
 		if ovb <= 1:

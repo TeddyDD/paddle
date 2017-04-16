@@ -2,18 +2,23 @@ tool
 extends Patch9Frame
 
 export(int) var speed = 55
-export(int) var width = 18
+export(int) var width = 18 setget resize
 var _prev_width = width
 var velocity = Vector2()
 onready var _prev_pos = get_pos()
+export(int) var def_width = 18
+onready var _true_width = width
+onready var _true_pos = get_pos()
 
 func _ready():
 	set_process(true)
-	resize(width)
+	resize(def_width)
 	set_pos(Vector2(floor(get_viewport_rect().end.x/2)-(get_size().x/2),\
 	                get_pos().y))
 
 func resize(w):
+	width = w
+	_true_width = w
 	set_size(Vector2(w,get_size().y))
 
 	get_node("center").clear_shapes()
@@ -37,16 +42,19 @@ func resize(w):
 	get_node("l2").add_shape(l2)
 	get_node("r2").add_shape(r2)
 	
+	_prev_width = w
 	#DEBUG
 	var _dbg_shapes = [l1,l2,r1,r2,center]
+	var _a = Area2D.new()
+	_a.set_name("_a")
+	add_child(_a)
+	for i in get_node("_a").get_children():
+			i.queue_free() 
 	for i in _dbg_shapes:
 		var _s = CollisionPolygon2D.new()
 		_s.set_polygon(i.get_points())
-		var _a = Area2D.new()
-		add_child(_a)
-		_a.add_child(_s)
+		get_node("_a").add_child(_s,true)
 	#\DEBUG
-	_prev_width = w
 
 func _process(delta):
 	if width != _prev_width:
@@ -54,8 +62,8 @@ func _process(delta):
 		
 	if Input.is_action_pressed("ui_left") and get_pos().x > 0:
 		velocity.x = -speed
-	elif Input.is_action_pressed("ui_right") and get_pos().x + width < get_viewport_rect().size.width:
-		velocity.x =  speed
+	elif Input.is_action_pressed("ui_right") and get_pos().x + width < Global._width:
+		velocity.x = speed
 	else:
 		velocity.x = 0
 	
@@ -63,4 +71,9 @@ func _process(delta):
 	motion.x = round(motion.x)
 	
 	set_pos(get_pos() + motion)
-	
+	_true_pos += motion
+	if width > def_width:
+		_true_width -= delta
+		_true_pos.x += float(delta)
+		set_pos(Vector2(round(_true_pos.x),get_pos().y))
+		width = round(_true_width)
