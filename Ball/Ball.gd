@@ -7,7 +7,7 @@ export var init_speed = 30
 export var max_speed = 50
 export (Vector2) var init_pos = null
 export (Vector2) var direction = Vector2(1, -1)
-export (int) var div_padd_mov_fact = 25
+export (int) var div_padd_mov_fact = 50
 export (float) var max_defl_hit_paddle = 0.35
 export (int) var bounce = 0.01
 
@@ -42,13 +42,12 @@ func _ready():
 func _fixed_process(delta):
 	if get_tree().is_editor_hint():
 		return
+	if _changed == true:
+		update_all()
 	if _started == true:
 		var motion = Vector2()
 		direction = direction.normalized()
 		_is_in_paddle = false
-		
-		if _changed == true:
-			update_all()
 		#if bounce from left edge
 		if get_pos().x - (get_node("Sprite").get_region_rect().size.x/2) + (direction.x * speed * delta) < 0 and direction.x <= 0:
 			direction.x = -direction.x
@@ -67,6 +66,7 @@ func _fixed_process(delta):
 		if  get_pos().y + (get_node("Sprite").get_region_rect().size.x/2) + (direction.y * speed * delta) > Global._height:
 			speed = init_speed
 			_started = false
+			setsize("small")
 			emit_signal("_ball_lost")
 		
 		motion += direction * speed
@@ -103,8 +103,8 @@ func _on_ball_area_enter( area ):
 		var midle_of_paddle = paddle.get_pos().x + ( (paddle.width) / 2 )
 		var ratio =  ( inpact_x - midle_of_paddle ) / ((paddle.width - 4) / 2)
 		if area.get_name() == "center" and abs(ratio) >= 0 and abs(ratio) <= 1 and direction.y >= 0:
-			direction.y = -direction.y
-			if ratio >= 0:
+			
+			if ratio >= 0 and ratio <= 1:
 				direction = direction.rotated(-lerp(0,max_defl_hit_paddle,abs(ratio))*PI)
 			else:
 				direction = direction.rotated(lerp(0,max_defl_hit_paddle,abs(ratio))*PI)
@@ -113,22 +113,25 @@ func _on_ball_area_enter( area ):
 				direction.y -= 0.1
 			inc_speed()
 		else:
-			if area.get_name() == "l1" and direction.x > 0:
+			if area.get_name() == "l2":
+				direction.y = -direction.y
+			elif area.get_name() == "r1" :
+				direction.y = -direction.y
+			elif area.get_name() == "l1" and direction.x > 0:
 				direction = direction.rotated(PI)
 				if direction.y >= 0:
 					direction.y *= -1.5
 				else:
 					direction.y *= 1.5
+					direction.y -= 0.1
 			elif area.get_name() == "r2" and direction.x < 0:
 				direction = direction.rotated(PI)
 				if direction.y >= 0:
 					direction.y *= -1.5
 				else:
 					direction.y *= 1.5
-			elif area.get_name() == "l2":
-				direction.y = -direction.y
-			elif area.get_name() == "r1" :
-				direction.y = -direction.y
+					direction.y -= 0.1
+			
 	
 	if area.is_in_group("Blocks"):
 		var ov = []
