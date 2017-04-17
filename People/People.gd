@@ -18,9 +18,9 @@ func _ready():
 		people.append([p, Global.rand_arr(head), Global.rand_arr(torso), Global.rand_arr(pants)])
 	
 func _draw():
-	var ball = get_parent().get_node("ball").get_global_pos()
+	var ball = get_parent().get_node("ball")
 	for p in people:
-		if ball.distance_to(get_global_pos() + p[0]) <= 8:
+		if ball.get_global_pos().distance_to(get_global_pos() + p[0]) <= ball.get_shape(0).get_radius() + 2:
 			draw_rect(Rect2(p[0], Vector2(3,1)), c.red)
 			count -= 1
 			people.erase(p)
