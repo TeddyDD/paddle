@@ -7,7 +7,7 @@ export var init_speed = 30
 export var max_speed = 50
 export (Vector2) var init_pos = null
 export (Vector2) var direction = Vector2(1, -1)
-export (int) var div_padd_mov_fact = 50
+export (int) var div_padd_mov_fact = 100
 export (float) var max_defl_hit_paddle = 0.35
 export (int) var bounce = 0.01
 
@@ -103,16 +103,17 @@ func _on_ball_area_enter( area ):
 		var midle_of_paddle = paddle.get_pos().x + ( (paddle.width) / 2 )
 		var ratio =  ( inpact_x - midle_of_paddle ) / ((paddle.width - 4) / 2)
 		if area.get_name() == "center" and abs(ratio) >= 0 and abs(ratio) <= 1 and direction.y >= 0:
-			
 			if ratio >= 0 and ratio <= 1:
 				direction = direction.rotated(-lerp(0,max_defl_hit_paddle,abs(ratio))*PI)
 			else:
 				direction = direction.rotated(lerp(0,max_defl_hit_paddle,abs(ratio))*PI)
 			if direction.y >= 0:
 				direction.y = -direction.y
-				direction.y -= 0.1
+				direction.y -= 0.3
 			inc_speed()
 		else:
+			if area.get_name() == "center":
+				direction.y = -direction.y
 			if area.get_name() == "l2":
 				direction.y = -direction.y
 			elif area.get_name() == "r1" :

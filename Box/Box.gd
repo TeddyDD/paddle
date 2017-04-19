@@ -38,7 +38,9 @@ func _on_Box_area_enter( area ):
 
 func behave(t):
 	if t == "blue":
+		get_node("../paddle").set_pos(Vector2(get_node("../paddle").get_pos().x-10,get_node("../paddle").get_pos().y))
 		get_node("../paddle").resize(get_node("../paddle").width + 20)
+		get_node("../paddle")._true_pos=(Vector2(get_node("../paddle").get_pos().x-10,get_node("../paddle").get_pos().y))
 	if t == "purple":
 		var c = load("res://People/crowd.tscn").instance()
 		c.set_pos(Vector2(48,39))

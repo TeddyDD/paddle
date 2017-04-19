@@ -42,6 +42,11 @@ func resize(w):
 	get_node("l2").add_shape(l2)
 	get_node("r2").add_shape(r2)
 	
+	if (get_pos().x + width > Global._width):
+		set_pos(Vector2(Global._width - width,get_pos().y))
+	if (get_pos().x< 0):
+		set_pos(Vector2(0,get_pos().y))
+	
 	_prev_width = w
 	#DEBUG
 	var _dbg_shapes = [l1,l2,r1,r2,center]
