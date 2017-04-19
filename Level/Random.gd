@@ -6,6 +6,8 @@ var rows = 4
 onready var block = preload("res://Block/Block.tscn")
 
 func _ready():
+	for i in get_children():
+		i.queue_free()
 	for x in range(columns):
 			blocks.append([])
 			for y in range(rows):

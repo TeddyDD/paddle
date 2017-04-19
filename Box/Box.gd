@@ -38,18 +38,17 @@ func _on_Box_area_enter( area ):
 
 func behave(t):
 	if t == "blue":
-		get_node("../../paddle").set_pos(Vector2(get_node("../paddle").get_pos().x-10,get_node("../paddle").get_pos().y))
-		get_node("../../paddle").resize(get_node("../paddle").width + 20)
-		get_node("../../paddle")._true_pos=(Vector2(get_node("../paddle").get_pos().x-10,get_node("../paddle").get_pos().y))
+		get_node("../../paddle").set_pos(Vector2(get_node("../../paddle").get_pos().x-10,get_node("../../paddle").get_pos().y))
+		get_node("../../paddle").resize(get_node("../../paddle").width + 20)
+		get_node("../../paddle")._true_pos=(Vector2(get_node("../../paddle").get_pos().x-10,get_node("../../paddle").get_pos().y))
 	if t == "purple":
 		var c = load("res://People/crowd.tscn").instance()
 		c.set_pos(Vector2(48,39))
-		get_parent().add_child(c)
+		get_parent().get_parent().add_child(c)
 	if t == "green":
 		for i in range(get_node("../../ball").types.size()):
-			if get_node("../../ball").types[i] == get_node("../ball").size and i != get_node("../ball").types.size()-1:
-				print(i)
-				get_node("../../ball").size = get_node("../ball").types[i+1] 
+			if get_node("../../ball").types[i] == get_node("../../ball").size and i != get_node("../../ball").types.size()-1:
+				get_node("../../ball").size = get_node("../../ball").types[i+1] 
 				break
 	if t == "red":
 		pass

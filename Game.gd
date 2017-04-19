@@ -11,4 +11,6 @@ func _ready():
 	get_node("Level")._ready()
 
 func _on_ball_lost():
-	print("game over")
+	for i in get_node("Level").get_children():
+		if i.get_name().begins_with("Box"):
+			i.queue_free()

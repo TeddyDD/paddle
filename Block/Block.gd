@@ -36,7 +36,8 @@ func _on_Block_area_exit( area ):
 				var b = box.instance()
 				b.set_type(Global.rand_arr(b.types.keys()))
 				b.set_pos(get_pos()+(get_node("sprite").get_item_rect().size/2))
-				get_node("../").add_child(b)
+				b.set_name("Box")
+				get_node("../").add_child(b,true)
 			queue_free()
 		else: 
 			sprite.set_frame(sprite.get_frame() + 1)
