@@ -14,18 +14,18 @@ func _ready():
 		var file = _dir.get_next()
 		while file !="":
 			file = _dir.get_next()
-			if (file.begins_with("Level") or file.begins_with("Random")) and  file.ends_with(".gd"):
-				level_queue.append(file)
+			if (file.begins_with("Level") or file.begins_with("Random")) and file.ends_with(".gd"):
+				if file != "_temp.gd":
+					level_queue.append(file)
 		level_queue.sort_custom(self,"sort_levels")
 		_dir.list_dir_end()
 		
-		print(level_queue)
 		load_level("res://Level/"+level_queue[0])
 
 func load_level(path):
-	print(get_children())
-	if get_children().has("Level"):
-		get_node("Level").queue_free()
+	for i in get_children():
+		if i.get_name() == "Level":
+			get_node("Level").queue_free()
 	var _l = preload("res://Level/Level.tscn").instance()
 	_l.set_script(load(path))
 	add_child(_l)
