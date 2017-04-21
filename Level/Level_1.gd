@@ -1,3 +1,4 @@
+tool
 extends Node
 
 var blocks = []
@@ -12,6 +13,7 @@ func _ready():
 			blocks.append([])
 			for y in range(rows):
 				blocks[x].append([])
+	set_block(0,0,1)
 	set_process(true)
 #func _process(delta):
 #	if get_tree().is_editor_hint():

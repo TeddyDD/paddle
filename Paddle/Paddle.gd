@@ -13,7 +13,7 @@ onready var _true_pos = get_pos()
 func _ready():
 	set_process(true)
 	resize(def_width)
-	set_pos(Vector2(floor(get_viewport_rect().end.x/2)-(get_size().x/2),\
+	set_pos(Vector2(floor(Global._width/2)-(get_size().x/2),\
 	                get_pos().y))
 
 func resize(w):
