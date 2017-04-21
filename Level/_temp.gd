@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var blocks = []
 var columns = 8
@@ -13,13 +13,14 @@ func _ready():
 			for y in range(rows):
 				blocks[x].append([])
 	set_process(true)
-#func _process(delta):
-#	if get_tree().is_editor_hint():
-#		draw_rect(Rect2(Vector2(0,0),Vector2(10,10)),Color(1,1,1))
+func _process(delta):
+	if (floor(get_local_mouse_pos().y/8-7)) >=0 and\
+	floor(get_local_mouse_pos().y/8-7) <= rows:
+		set_block(floor(get_local_mouse_pos().x/16),floor(get_local_mouse_pos().y/8)-8,0)
 func set_block(x,y,type):
 	if type != null:
 		blocks[x][y] = block.instance()
-		blocks[x][y].set_pos(Vector2(x*16,y*columns+3*16))
+		blocks[x][y].set_pos(Vector2(x*16,y*8+64))
 		blocks[x][y].layer = y
 		blocks[x][y].type = type
 		add_child(blocks[x][y],true)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://TileSet/Tileset_a.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Paddle/Paddle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Ball/Ball.tscn" type="PackedScene" id=6]
 [ext_resource path="res://People/crowd.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Level/Level.tscn" type="PackedScene" id=8]
 
 [node name="Game" type="Node"]
 
@@ -79,7 +78,5 @@ transform/pos = Vector2( 92.9262, 71.5105 )
 [node name="crowd" parent="." instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 48, 39 )
-
-[node name="Level" parent="." instance=ExtResource( 8 )]
 
 

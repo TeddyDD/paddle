@@ -25,11 +25,11 @@ func _ready():
 func load_level(path):
 	for i in get_children():
 		if i.get_name() == "Level":
-			get_node("Level").queue_free()
+			get_node("Level").free()
 	var _l = preload("res://Level/Level.tscn").instance()
+	_l.set_name("Level")
 	_l.set_script(load(path))
-	add_child(_l)
-	get_node("Level")._ready()
+	add_child(_l,true)
 
 func sort_levels(a,b):
 	if b.begins_with("Random"):
